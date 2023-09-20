@@ -1,0 +1,101 @@
+version: "3.8"
+services:
+  nginx-maqueta:
+    image: nginx:stable-alpine
+    container_name: nginx-maqueta
+    restart: unless-stopped
+    tty: true
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - .:/var/www/html
+      - ./infra/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+      - postgres-maqueta
+      - redis-maqueta
+    networks:
+      - maquetanetwork
+
+  postgres-maqueta:
+    image: postgres:14-alpine
+    container_name: postgres-maqueta
+    restart: unless-stopped
+    tty: true
+    volumes:
+      # - ./infra/postgres/data:/var/lib/postgresql/data #localpath
+      - maqueta-db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=homestead
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=homestead
+    ports:
+      - "5432:5432"
+    networks:
+      - maquetanetwork
+
+  pgadmin-maqueta:
+    depends_on:
+      - postgres-maqueta
+    image: dpage/pgadmin4:latest
+    ports:
+      - "5480:80"
+    environment:
+      - PGADMIN_DEFAULT_PASSWORD=VnRE!Jib7W9@qeBN
+      - PGADMIN_DEFAULT_EMAIL=soporte.desarrollo@silent4business.com
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    networks:
+      - maquetanetwork
+
+  php:
+    #uncomment this if you will use only docker compose
+    build:
+      context: "./infra/php/"
+      dockerfile: Dockerfile
+    container_name: php-maqueta
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - .:/var/www/html
+    ports:
+      - 9000:80
+    networks:
+      - maquetanetwork
+
+  redis-maqueta:
+    image: redis:alpine
+    container_name: redis-maqueta
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - ./infra/redis/redis.conf:/usr/local/etc/redis/redis.conf # Mount the Redis configuration file
+    networks:
+      - maquetanetwork
+    mem_limit: 2g
+
+  rdadmin-maqueta:
+    image: erikdubbelboer/phpredisadmin:latest
+    container_name: rdadmin-maqueta
+    restart: unless-stopped
+    tty: true
+    ports:
+      - 6360:80
+    environment:
+      - REDIS_1_HOST=redis-maqueta # Replace with your Redis container name
+      - REDIS_1_PORT=6379 # Replace with your Redis container port
+      #- REDIS_1_AUTH=silent11!
+    networks:
+      - maquetanetwork
+
+volumes:
+  maqueta-db:
+    driver: local
+  pgadmin-data:
+    driver: local
+
+networks:
+  maquetanetwork:
