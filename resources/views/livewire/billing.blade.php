@@ -24,7 +24,8 @@
                                             </div>
                                         </div>
                                         <div class="ms-auto w-20 d-flex align-items-end justify-content-end">
-                                            <img class="w-60 mt-2" src="../assets/img/logos/mastercard.png" alt="logo">
+                                            <img class="w-60 mt-2" src="../assets/img/logos/mastercard.png"
+                                                alt="logo">
                                         </div>
                                     </div>
                                 </div>
@@ -97,7 +98,8 @@
                                     <div class="col-md-6">
                                         <div
                                             class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
-                                            <img class="w-10 me-3 mb-0" src="../assets/img/logos/visa.png" alt="logo">
+                                            <img class="w-10 me-3 mb-0" src="../assets/img/logos/visa.png"
+                                                alt="logo">
                                             <h6 class="mb-0">
                                                 ****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;5248
                                             </h6>
@@ -173,16 +175,16 @@
                                 </div>
                             </li>
                             <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
-                              <div class="d-flex flex-column">
-                                  <h6 class="text-dark mb-1 font-weight-bold text-sm">March, 01, 2019</h6>
-                                  <span class="text-xs">#ST-451897</span>
-                              </div>
-                              <div class="d-flex align-items-center text-sm">
-                                  $275
-                                  <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i
-                                          class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
-                              </div>
-                          </li>
+                                <div class="d-flex flex-column">
+                                    <h6 class="text-dark mb-1 font-weight-bold text-sm">March, 01, 2019</h6>
+                                    <span class="text-xs">#ST-451897</span>
+                                </div>
+                                <div class="d-flex align-items-center text-sm">
+                                    $275
+                                    <button class="btn btn-link text-dark text-sm mb-0 px-0 ms-4"><i
+                                            class="fas fa-file-pdf text-lg me-1"></i> PDF</button>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>

@@ -4,13 +4,81 @@
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
         <a class="align-items-center d-flex m-0 navbar-brand text-wrap" href="{{ route('dashboard') }}">
-            <img src="../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="...">
-            <span class="ms-3 font-weight-bold">Soft UI Dashboard Laravel Livewire</span>
+            <img src="https://silent4business.com/img/logo_silent.webp" class="navbar-brand-img h-200" alt="...">
+            <span class="ms-3 font-weight-bold">Maqueta Open Source</span>
         </a>
     </div>
     <hr class="horizontal dark mt-0">
     <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
+            <li class="nav-item">
+                <a wire:navigate class="nav-link {{ Route::currentRouteName() == 'home' ? 'active' : '' }}"
+                    href="{{ route('home') }}">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z" />
+                        </svg>
+                        <title>home</title>
+                        <g id="Basic-Elements" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Rounded-Icons" transform="translate(-1717.000000, -291.000000)" fill="#FFFFFF"
+                                fill-rule="nonzero">
+                                <g id="Icons-with-opacity" transform="translate(1716.000000, 291.000000)">
+                                    <g id="home" transform="translate(1.000000, 0.000000)">
+                                        <path class="color-background"
+                                            d="M45,0 L26,0 C25.447,0 25,0.447 25,1 L25,20 C25,20.379 25.214,20.725 25.553,20.895 C25.694,20.965 25.848,21 26,21 C26.212,21 26.424,20.933 26.6,20.8 L34.333,15 L45,15 C45.553,15 46,14.553 46,14 L46,1 C46,0.447 45.553,0 45,0 Z"
+                                            id="Path" opacity="0.59858631"></path>
+                                        <path class="color-foreground"
+                                            d="M22.883,32.86 C20.761,32.012 17.324,31 13,31 C8.676,31 5.239,32.012 3.116,32.86 C1.224,33.619 0,35.438 0,37.494 L0,41 C0,41.553 0.447,42 1,42 L25,42 C25.553,42 26,41.553 26,41 L26,37.494 C26,35.438 24.776,33.619 22.883,32.86 Z"
+                                            id="Path"></path>
+                                        <path class="color-foreground"
+                                            d="M13,28 C17.432,28 21,22.529 21,18 C21,13.589 17.411,10 13,10 C8.589,10 5,13.589 5,18 C5,22.529 8.568,28 13,28 Z"
+                                            id="Path"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                        </svg>
+                    </div>
+                    <span class="nav-link-text ms-1">Home</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a wire:navigate class="nav-link {{ Route::currentRouteName() == 'objetivos' ? 'active' : '' }}"
+                    href="{{ route('objetivos') }}">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-database" viewBox="0 0 16 16">
+                            <path
+                                d="M4.318 2.687C5.234 2.271 6.536 2 8 2s2.766.27 3.682.687C12.644 3.125 13 3.627 13 4c0 .374-.356.875-1.318 1.313C10.766 5.729 9.464 6 8 6s-2.766-.27-3.682-.687C3.356 4.875 3 4.373 3 4c0-.374.356-.875 1.318-1.313ZM13 5.698V7c0 .374-.356.875-1.318 1.313C10.766 8.729 9.464 9 8 9s-2.766-.27-3.682-.687C3.356 7.875 3 7.373 3 7V5.698c.271.202.58.378.904.525C4.978 6.711 6.427 7 8 7s3.022-.289 4.096-.777A4.92 4.92 0 0 0 13 5.698ZM14 4c0-1.007-.875-1.755-1.904-2.223C11.022 1.289 9.573 1 8 1s-3.022.289-4.096.777C2.875 2.245 2 2.993 2 4v9c0 1.007.875 1.755 1.904 2.223C4.978 15.71 6.427 16 8 16s3.022-.289 4.096-.777C13.125 14.755 14 14.007 14 13V4Zm-1 4.698V10c0 .374-.356.875-1.318 1.313C10.766 11.729 9.464 12 8 12s-2.766-.27-3.682-.687C3.356 10.875 3 10.373 3 10V8.698c.271.202.58.378.904.525C4.978 9.71 6.427 10 8 10s3.022-.289 4.096-.777A4.92 4.92 0 0 0 13 8.698Zm0 3V13c0 .374-.356.875-1.318 1.313C10.766 14.729 9.464 15 8 15s-2.766-.27-3.682-.687C3.356 13.875 3 13.373 3 13v-1.302c.271.202.58.378.904.525C4.978 12.71 6.427 13 8 13s3.022-.289 4.096-.777c.324-.147.633-.323.904-.525Z" />
+                        </svg>
+                        <title>Objetivos</title>
+                        <g id="Basic-Elements" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Rounded-Icons" transform="translate(-1717.000000, -291.000000)" fill="#FFFFFF"
+                                fill-rule="nonzero">
+                                <g id="Icons-with-opacity" transform="translate(1716.000000, 291.000000)">
+                                    <g id="Objetivos" transform="translate(1.000000, 0.000000)">
+                                        <path class="color-background"
+                                            d="M45,0 L26,0 C25.447,0 25,0.447 25,1 L25,20 C25,20.379 25.214,20.725 25.553,20.895 C25.694,20.965 25.848,21 26,21 C26.212,21 26.424,20.933 26.6,20.8 L34.333,15 L45,15 C45.553,15 46,14.553 46,14 L46,1 C46,0.447 45.553,0 45,0 Z"
+                                            id="Path" opacity="0.59858631"></path>
+                                        <path class="color-foreground"
+                                            d="M22.883,32.86 C20.761,32.012 17.324,31 13,31 C8.676,31 5.239,32.012 3.116,32.86 C1.224,33.619 0,35.438 0,37.494 L0,41 C0,41.553 0.447,42 1,42 L25,42 C25.553,42 26,41.553 26,41 L26,37.494 C26,35.438 24.776,33.619 22.883,32.86 Z"
+                                            id="Path"></path>
+                                        <path class="color-foreground"
+                                            d="M13,28 C17.432,28 21,22.529 21,18 C21,13.589 17.411,10 13,10 C8.589,10 5,13.589 5,18 C5,22.529 8.568,28 13,28 Z"
+                                            id="Path"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                        </svg>
+                    </div>
+                    <span class="nav-link-text ms-1">Objetivos</span>
+                </a>
+            </li>
             <li class="nav-item pb-2">
                 <a wire:navigate class="nav-link {{ Route::currentRouteName() == 'dashboard' ? 'active' : '' }}"
                     href="{{ route('dashboard') }}">
@@ -51,7 +119,8 @@
                         <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>customer-support</title>
-                            <g id="Basic-Elements" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Basic-Elements" stroke="none" stroke-width="1" fill="none"
+                                fill-rule="evenodd">
                                 <g id="Rounded-Icons" transform="translate(-1717.000000, -291.000000)" fill="#FFFFFF"
                                     fill-rule="nonzero">
                                     <g id="Icons-with-opacity" transform="translate(1716.000000, 291.000000)">
@@ -79,8 +148,9 @@
                     href="{{ route('user-management') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i style="font-size: 1rem;" class="fas fa-lg fa-list-ul ps-2 pe-2 text-center
-                        {{ in_array(request()->route()->getName(),['user-management']) ? 'text-white' : 'text-dark' }}"></i>
+                        <i style="font-size: 1rem;"
+                            class="fas fa-lg fa-list-ul ps-2 pe-2 text-center
+                        {{ in_array(request()->route()->getName(),['user-management'])? 'text-white': 'text-dark' }}"></i>
                     </div>
                     <span class="nav-link-text ms-1">User Management</span>
                 </a>
@@ -97,7 +167,8 @@
                         <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>office</title>
-                            <g id="Basic-Elements" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Basic-Elements" stroke="none" stroke-width="1" fill="none"
+                                fill-rule="evenodd">
                                 <g id="Rounded-Icons" transform="translate(-1869.000000, -293.000000)" fill="#FFFFFF"
                                     fill-rule="nonzero">
                                     <g id="Icons-with-opacity" transform="translate(1716.000000, 291.000000)">
@@ -125,7 +196,8 @@
                         <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>credit-card</title>
-                            <g id="Basic-Elements" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Basic-Elements" stroke="none" stroke-width="1" fill="none"
+                                fill-rule="evenodd">
                                 <g id="Rounded-Icons" transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF"
                                     fill-rule="nonzero">
                                     <g id="Icons-with-opacity" transform="translate(1716.000000, 291.000000)">
@@ -146,14 +218,15 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Route::currentRouteName() == 'rtl' ? 'active' : '' }}"
+                <a wire:navigate class="nav-link {{ Route::currentRouteName() == 'rtl' ? 'active' : '' }}"
                     href="{{ route('rtl') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>settings</title>
-                            <g id="Basic-Elements" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Basic-Elements" stroke="none" stroke-width="1" fill="none"
+                                fill-rule="evenodd">
                                 <g id="Rounded-Icons" transform="translate(-2020.000000, -442.000000)" fill="#FFFFFF"
                                     fill-rule="nonzero">
                                     <g id="Icons-with-opacity" transform="translate(1716.000000, 291.000000)">
@@ -178,14 +251,15 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link {{ Route::currentRouteName() == 'profile' ? 'active' : '' }}"
+                <a wire:navigate class="nav-link {{ Route::currentRouteName() == 'profile' ? 'active' : '' }}"
                     href="{{ route('profile') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>customer-support</title>
-                            <g id="Basic-Elements" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Basic-Elements" stroke="none" stroke-width="1" fill="none"
+                                fill-rule="evenodd">
                                 <g id="Rounded-Icons" transform="translate(-1717.000000, -291.000000)" fill="#FFFFFF"
                                     fill-rule="nonzero">
                                     <g id="Icons-with-opacity" transform="translate(1716.000000, 291.000000)">
@@ -209,13 +283,14 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('sign-in') }}">
+                <a wire:navigate class="nav-link" href="{{ route('sign-in') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>document</title>
-                            <g id="Basic-Elements" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Basic-Elements" stroke="none" stroke-width="1" fill="none"
+                                fill-rule="evenodd">
                                 <g id="Rounded-Icons" transform="translate(-1870.000000, -591.000000)" fill="#FFFFFF"
                                     fill-rule="nonzero">
                                     <g id="Icons-with-opacity" transform="translate(1716.000000, 291.000000)">
@@ -236,13 +311,14 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('static-sign-up') }}">
+                <a wire:navigate class="nav-link" href="{{ route('static-sign-up') }}">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="20px" viewBox="0 0 40 40" version="1.1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>spaceship</title>
-                            <g id="Basic-Elements" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Basic-Elements" stroke="none" stroke-width="1" fill="none"
+                                fill-rule="evenodd">
                                 <g id="Rounded-Icons" transform="translate(-1720.000000, -592.000000)" fill="#FFFFFF"
                                     fill-rule="nonzero">
                                     <g id="Icons-with-opacity" transform="translate(1716.000000, 291.000000)">
@@ -270,28 +346,10 @@
             </li>
             <li class="nav-link mb-0">
                 <a href="https://www.creative-tim.com/product/soft-ui-dashboard-pro-laravel-livewire"
-                    class="btn btn-primary btn-md active px-5 text-white" target="_blank" role="button" aria-pressed="true">
+                    class="btn btn-primary btn-md active px-5 text-white" target="_blank" role="button"
+                    aria-pressed="true">
                     Upgrade to PRO</a>
             </li>
         </ul>
-    </div>
-    <div class="sidenav-footer mx-3 mt-3 pt-3">
-        <div class="card card-background shadow-none card-background-mask-secondary" id="sidenavCard">
-            <div class="full-background" style="background-image: url('../assets/img/curved-images/white-curved.jpeg')">
-            </div>
-            <div class="card-body text-left p-3 w-100">
-                <div
-                    class="icon icon-shape icon-sm bg-white shadow text-center mb-3 d-flex align-items-center justify-content-center border-radius-md">
-                    <i class="ni ni-diamond text-dark text-gradient text-lg top-0" aria-hidden="true"
-                        id="sidenavCardIcon"></i>
-                </div>
-                <div class="docs-info">
-                    <h6 class="text-white up mb-0">Need help?</h6>
-                    <p class="text-xs font-weight-bold">Please check our docs</p>
-                    <a href="/documentation/bootstrap/overview/soft-ui-dashboard/index.html" target="_blank"
-                        class="btn btn-white btn-sm w-100 mb-0">Documentation</a>
-                </div>
-            </div>
-        </div>
     </div>
 </aside>
