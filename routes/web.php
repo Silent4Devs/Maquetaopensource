@@ -15,6 +15,7 @@ use App\Http\Livewire\StaticSignIn;
 use App\Http\Livewire\StaticSignUp;
 use App\Http\Livewire\Rtl;
 use App\Http\Livewire\ObjetivosCatalogo;
+use App\Http\Livewire\ScriptsCatalogo;
 
 use App\Http\Livewire\LaravelExamples\UserProfile;
 use App\Http\Livewire\LaravelExamples\UserManagement;
@@ -41,6 +42,7 @@ Route::get('/reset-password/{id}', ResetPassword::class)->name('reset-password')
 Route::middleware('auth')->group(function () {
     Route::get('home', Home::class)->name('home');
     Route::get('/objetivos-catalogo', ObjetivosCatalogo::class)->name('objetivos');
+    Route::get('/catalogo-scripts', ScriptsCatalogo::class)->name('catalogo-scripts');
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/billing', Billing::class)->name('billing');
     Route::get('/profile', Profile::class)->name('profile');

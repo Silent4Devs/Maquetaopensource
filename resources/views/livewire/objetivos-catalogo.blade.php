@@ -52,7 +52,8 @@
                                         </td>
                                         <td>
                                             <div>
-                                                <img src="https://www.pngall.com/wp-content/uploads/11/World-Wide-Web-Address-PNG.png" class="avatar avatar-sm me-3">
+                                                <img src="https://www.pngall.com/wp-content/uploads/11/World-Wide-Web-Address-PNG.png"
+                                                    class="avatar avatar-sm me-3">
                                             </div>
                                         </td>
                                         <td class="text-center">
@@ -77,7 +78,8 @@
                                         </td>
                                         <td>
                                             <div>
-                                                <img src="https://www.pngall.com/wp-content/uploads/11/World-Wide-Web-Address-PNG.png" class="avatar avatar-sm me-3">
+                                                <img src="https://www.pngall.com/wp-content/uploads/11/World-Wide-Web-Address-PNG.png"
+                                                    class="avatar avatar-sm me-3">
                                             </div>
                                         </td>
                                         <td class="text-center">
@@ -102,7 +104,8 @@
                                         </td>
                                         <td>
                                             <div>
-                                                <img src="https://media.es.wired.com/photos/631ec3ef64fe55a038bdc9a8/16:9/w_1280,c_limit/How-to-Choose-a-Laptop-Gear-GettyImages-1235728903.jpg" class="avatar avatar-sm me-3">
+                                                <img src="https://media.es.wired.com/photos/631ec3ef64fe55a038bdc9a8/16:9/w_1280,c_limit/How-to-Choose-a-Laptop-Gear-GettyImages-1235728903.jpg"
+                                                    class="avatar avatar-sm me-3">
                                             </div>
                                         </td>
                                         <td class="text-center">
@@ -127,7 +130,8 @@
                                         </td>
                                         <td>
                                             <div>
-                                                <img src="https://img.freepik.com/vector-gratis/icono-vector-isometrico-aislado-rack-servidor-equipo-computacion-nube-almacenamiento-informacion_107791-4530.jpg" class="avatar avatar-sm me-3">
+                                                <img src="https://img.freepik.com/vector-gratis/icono-vector-isometrico-aislado-rack-servidor-equipo-computacion-nube-almacenamiento-informacion_107791-4530.jpg"
+                                                    class="avatar avatar-sm me-3">
                                             </div>
                                         </td>
                                         <td class="text-center">
@@ -152,7 +156,8 @@
                                         </td>
                                         <td>
                                             <div>
-                                                <img src="https://media.es.wired.com/photos/631ec3ef64fe55a038bdc9a8/16:9/w_1280,c_limit/How-to-Choose-a-Laptop-Gear-GettyImages-1235728903.jpg" class="avatar avatar-sm me-3">
+                                                <img src="https://media.es.wired.com/photos/631ec3ef64fe55a038bdc9a8/16:9/w_1280,c_limit/How-to-Choose-a-Laptop-Gear-GettyImages-1235728903.jpg"
+                                                    class="avatar avatar-sm me-3">
                                             </div>
                                         </td>
                                         <td class="text-center">
@@ -210,6 +215,8 @@
                                             <option>Servidor</option>
                                         </select>
                                     </div>
+                                </div>
+                                <br>
                         </form>
                     </div>
                     <div class="modal-footer">

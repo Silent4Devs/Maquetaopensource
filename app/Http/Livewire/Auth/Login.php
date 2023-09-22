@@ -16,20 +16,21 @@ class Login extends Component
         'password' => 'required',
     ];
 
-    public function mount() {
-        if(auth()->user()){
-            redirect('/dashboard');
+    public function mount()
+    {
+        if (auth()->user()) {
+            redirect('home');
         }
     }
 
-    public function login() {
+    public function login()
+    {
         $credentials = $this->validate();
-        if(auth()->attempt(['email' => $this->email, 'password' => $this->password], $this->remember_me)) {
+        if (auth()->attempt(['email' => $this->email, 'password' => $this->password], $this->remember_me)) {
             $user = User::where(["email" => $this->email])->first();
             auth()->login($user, $this->remember_me);
-            return redirect()->intended('/dashboard');
-        }
-        else{
+            return redirect()->intended('home');
+        } else {
             return $this->addError('email', trans('auth.failed'));
         }
     }
