@@ -107,7 +107,7 @@
                     <span class="nav-link-text ms-1">Dashboard</span>
                 </a>
             </li>
-
+            {{--
             <li class="nav-item mt-2">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Laravel Examples</h6>
             </li>
@@ -349,7 +349,7 @@
                     class="btn btn-primary btn-md active px-5 text-white" target="_blank" role="button"
                     aria-pressed="true">
                     Upgrade to PRO</a>
-            </li>
+            </li> --}}
         </ul>
     </div>
 </aside>
