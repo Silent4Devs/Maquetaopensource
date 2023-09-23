@@ -4,7 +4,7 @@
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0">
-                        <h6>Projects table</h6>
+                        <h6>Catálogo Scripts</h6>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
@@ -12,17 +12,20 @@
                                 <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Project</th>
+                                            Script</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Budget</th>
+                                            Ataque</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Status</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
                                             Completion</th>
-                                        <th></th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">
+                                            Acción
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,7 +42,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <p class="text-sm font-weight-bold mb-0">$2,500</p>
+                                            <p class="text-sm font-weight-bold mb-0">Detect Waf</p>
                                         </td>
                                         <td>
                                             <span class="text-xs font-weight-bold">working</span>
@@ -56,10 +59,14 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="align-middle">
-                                            <button class="btn btn-link text-secondary mb-0">
-                                                <i class="fa fa-ellipsis-v text-xs"></i>
-                                            </button>
+                                        <td class="align-middle text-center">
+                                            <a href="#" class="mx-3" data-bs-toggle="tooltip"
+                                                data-bs-original-title="Edit user">
+                                                <i class="fas fa-user-edit text-secondary"></i>
+                                            </a>
+                                            <span>
+                                                <i class="cursor-pointer fas fa-trash text-secondary"></i>
+                                            </span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -75,7 +82,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <p class="text-sm font-weight-bold mb-0">$5,000</p>
+                                            <p class="text-sm font-weight-bold mb-0">Web Enum</p>
                                         </td>
                                         <td>
                                             <span class="text-xs font-weight-bold">done</span>
@@ -92,11 +99,14 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="align-middle">
-                                            <button class="btn btn-link text-secondary mb-0" aria-haspopup="true"
-                                                aria-expanded="false">
-                                                <i class="fa fa-ellipsis-v text-xs"></i>
-                                            </button>
+                                        <td class="align-middle text-center">
+                                            <a href="#" class="mx-3" data-bs-toggle="tooltip"
+                                                data-bs-original-title="Edit user">
+                                                <i class="fas fa-user-edit text-secondary"></i>
+                                            </a>
+                                            <span>
+                                                <i class="cursor-pointer fas fa-trash text-secondary"></i>
+                                            </span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -112,7 +122,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <p class="text-sm font-weight-bold mb-0">$3,400</p>
+                                            <p class="text-sm font-weight-bold mb-0">Extract Ports</p>
                                         </td>
                                         <td>
                                             <span class="text-xs font-weight-bold">canceled</span>
@@ -129,11 +139,14 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="align-middle">
-                                            <button class="btn btn-link text-secondary mb-0" aria-haspopup="true"
-                                                aria-expanded="false">
-                                                <i class="fa fa-ellipsis-v text-xs"></i>
-                                            </button>
+                                        <td class="align-middle text-center">
+                                            <a href="#" class="mx-3" data-bs-toggle="tooltip"
+                                                data-bs-original-title="Edit user">
+                                                <i class="fas fa-user-edit text-secondary"></i>
+                                            </a>
+                                            <span>
+                                                <i class="cursor-pointer fas fa-trash text-secondary"></i>
+                                            </span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -149,7 +162,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <p class="text-sm font-weight-bold mb-0">$1,000</p>
+                                            <p class="text-sm font-weight-bold mb-0">Fuzzing</p>
                                         </td>
                                         <td>
                                             <span class="text-xs font-weight-bold">canceled</span>
@@ -166,11 +179,14 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="align-middle">
-                                            <button class="btn btn-link text-secondary mb-0" aria-haspopup="true"
-                                                aria-expanded="false">
-                                                <i class="fa fa-ellipsis-v text-xs"></i>
-                                            </button>
+                                        <td class="align-middle text-center">
+                                            <a href="#" class="mx-3" data-bs-toggle="tooltip"
+                                                data-bs-original-title="Edit user">
+                                                <i class="fas fa-user-edit text-secondary"></i>
+                                            </a>
+                                            <span>
+                                                <i class="cursor-pointer fas fa-trash text-secondary"></i>
+                                            </span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -186,7 +202,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <p class="text-sm font-weight-bold mb-0">$14,000</p>
+                                            <p class="text-sm font-weight-bold mb-0">Dns Enum</p>
                                         </td>
                                         <td>
                                             <span class="text-xs font-weight-bold">working</span>
@@ -203,11 +219,14 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="align-middle">
-                                            <button class="btn btn-link text-secondary mb-0" aria-haspopup="true"
-                                                aria-expanded="false">
-                                                <i class="fa fa-ellipsis-v text-xs"></i>
-                                            </button>
+                                        <td class="align-middle text-center">
+                                            <a href="#" class="mx-3" data-bs-toggle="tooltip"
+                                                data-bs-original-title="Edit user">
+                                                <i class="fas fa-user-edit text-secondary"></i>
+                                            </a>
+                                            <span>
+                                                <i class="cursor-pointer fas fa-trash text-secondary"></i>
+                                            </span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -223,7 +242,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <p class="text-sm font-weight-bold mb-0">$2,300</p>
+                                            <p class="text-sm font-weight-bold mb-0">Header Attack</p>
                                         </td>
                                         <td>
                                             <span class="text-xs font-weight-bold">done</span>
@@ -240,11 +259,14 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="align-middle">
-                                            <button class="btn btn-link text-secondary mb-0" aria-haspopup="true"
-                                                aria-expanded="false">
-                                                <i class="fa fa-ellipsis-v text-xs"></i>
-                                            </button>
+                                        <td class="align-middle text-center">
+                                            <a href="#" class="mx-3" data-bs-toggle="tooltip"
+                                                data-bs-original-title="Edit user">
+                                                <i class="fas fa-user-edit text-secondary"></i>
+                                            </a>
+                                            <span>
+                                                <i class="cursor-pointer fas fa-trash text-secondary"></i>
+                                            </span>
                                         </td>
                                     </tr>
                                 </tbody>
