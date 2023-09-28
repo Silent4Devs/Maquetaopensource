@@ -1,0 +1,28 @@
+language: generic
+
+services:
+  - docker
+
+env:
+  - COMPOSE_PROJECT_NAME=maquetaopensource
+  - COMPOSER_CACHE_DIR=/var/www/.composer/cache
+  - DB_CONNECTION=pgsql
+  - DB_HOST=postgres-maqueta
+  - DB_PORT=5432
+  - DB_DATABASE=homestead
+  - DB_USERNAME=homestead
+  - DB_PASSWORD=secret
+
+before_install:
+  - cp .env.example .env
+  - docker-compose up -d
+  - docker-compose exec app composer install --no-interaction
+  - docker-compose exec app php artisan key:generate
+  - docker-compose exec app php artisan migrate --seed
+  - docker-compose exec app php artisan config:cache
+
+script:
+  - docker-compose exec app vendor/bin/phpunit
+
+after_script:
+  - docker-compose down
