@@ -7,19 +7,17 @@ on:
     branches: ["develop"]
 
 jobs:
-  test:
+  first_job:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Docker Compose
-        uses: docker/compose-action@v1
-        with:
-          compose-yaml: docker-compose.yml
-          compose-version: 2.23.0
+  build:
+    runs-on: ubuntu-latest
 
+    steps:
       - name: Start Docker
         run: |
           docker compose up -d
