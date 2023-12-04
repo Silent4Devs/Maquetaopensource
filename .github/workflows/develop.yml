@@ -1,4 +1,4 @@
-name: Laravel Tests and Auto-Merge
+name: CI
 
 on:
   push:
@@ -12,24 +12,46 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
 
-  build:
-    runs-on: ubuntu-latest
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /var/lib/docker
+          key: ${{ runner.os }}-docker-${{ hashFiles('**/Dockerfile') }}
+          restore-keys: |
+            ${{ runner.os }}-docker-
 
-    steps:
       - name: Start Docker
         run: |
           docker compose up -d
-          docker compose exec -T app php artisan migrate
+          docker compose exec -T php php artisan migrate
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: /root/.composer/cache
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
 
       - name: Install dependencies
         run: |
-          docker compose exec -T app composer install
+          docker compose exec -T php composer install
+
+      - name: Prepare Laravel Application
+        run: |
+          cp .env.example .env
+          docker compose exec -T php php artisan key:generate
+
+      - name: Run code quality tools
+        run: vendor/bin/phpunit pint
 
       # - name: Run tests
       #   run: |
-      #     docker-compose exec -T app php artisan test
+      #     docker-compose exec -T php php artisan test
 
       - name: Auto-merge to develop
         if: github.event.pull_request.merged == 'false' && github.event_name == 'pull_request' && github.ref == 'refs/heads/develop'
