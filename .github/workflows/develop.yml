@@ -7,13 +7,17 @@ on:
     branches: ["develop"]
 
 jobs:
-  test:
+  first_job:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Start Docker
         run: |
           docker compose up -d
