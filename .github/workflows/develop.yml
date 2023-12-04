@@ -1,9 +1,10 @@
 name: Laravel Tests and Auto-Merge
 
 on:
+  push:
+    branches: ["develop"]
   pull_request:
-    branches:
-      - develop
+    branches: ["develop"]
 
 jobs:
   test:
