@@ -1,0 +1,35 @@
+name: Laravel Tests and Auto-Merge
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Start Docker
+        run: |
+          docker compose up -d
+          docker compose exec -T app php artisan migrate
+
+      - name: Install dependencies
+        run: |
+          docker compose exec -T app composer install
+
+      # - name: Run tests
+      #   run: |
+      #     docker-compose exec -T app php artisan test
+
+      - name: Auto-merge to develop
+        if: github.event.pull_request.merged == 'false' && github.event_name == 'pull_request' && github.ref == 'refs/heads/develop'
+        uses: pascalgn/automerge-action@v0.13.0
+        with:
+          commit-message: "Auto-merged by GitHub Actions"
+          merge-method: "squash" # O el método de merge que prefieras
+          github-token: ${{ secrets.GITHUB_TOKEN }}
