@@ -26,7 +26,6 @@ jobs:
 
       - name: Prepare Laravel Application
         run: |
-          cp .env.example .env
           ./vendor/bin/pint
 
       # - name: Cache Docker layers
