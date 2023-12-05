@@ -45,7 +45,7 @@ jobs:
           docker compose exec -T php php artisan migrate
 
       - name: Run code quality tools
-        run: ./vendor/bin/phpunit pint
+        run: docker compose exec -T php ./vendor/bin/phpunit pint
 
       # - name: Run tests
       #   run: |
