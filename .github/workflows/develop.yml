@@ -37,15 +37,10 @@ jobs:
       - name: Cache Composer dependencies
         uses: actions/cache@v3
         with:
-          path: /root/.composer/cache
+          path: /vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
           restore-keys: |
             ${{ runner.os }}-composer-
-
-      - name: Change permissions of Composer cache
-        run: |
-          sudo chmod -R 777 /root/.composer/cache
-        if: ${{ success() }} # Cambiar si es necesario, dependiendo del lugar donde se presente el error de permisos
 
       - name: Install dependencies
         run: |
