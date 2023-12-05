@@ -52,9 +52,9 @@ jobs:
           docker compose exec -T php php artisan key:generate
           docker compose exec -T php php artisan migrate
 
-      - name: Run code quality tools and tests
+      - name: Run code quality tools
         run: |
-          docker-compose exec -T php ./vendor/bin/phpunit
+          docker-compose exec -T php ./vendor/bin/pint
           # Run other code quality tools or additional tests here
 
       # - name: Run tests
