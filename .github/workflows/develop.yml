@@ -5,14 +5,14 @@ on:
       - develop
 
 jobs:
-  lbuild_and_check:
+  build_and_check:
     runs-on: ubuntu-latest
     # Service container Postgresql postgresql
     services:
       # Label used to access the service container
-      postgres:
+      postgres-maqueta:
         # Docker Hub image (also with version)
-        image: postgres:14
+        image: postgres:14-alpine
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: secret
