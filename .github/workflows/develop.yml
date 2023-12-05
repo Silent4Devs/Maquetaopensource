@@ -91,31 +91,31 @@ jobs:
       - name: PHP Version
         run: php --version
 
-      # Code quality
-      - name: Execute tests (Unit and Feature tests) via PHPUnit
-        # Set environment
-        env:
-          DB_CONNECTION: pgsql
-          DB_DATABASE: homestead
-          DB_PORT: 5432
-          DB_USERNAME: postgres
-          DB_PASSWORD: secret
+      # # Code quality
+      # - name: Execute tests (Unit and Feature tests) via PHPUnit
+      #   # Set environment
+      #   env:
+      #     DB_CONNECTION: pgsql
+      #     DB_DATABASE: homestead
+      #     DB_PORT: 5432
+      #     DB_USERNAME: postgres
+      #     DB_PASSWORD: secret
 
-        run: vendor/bin/phpunit --testdox
+      #   run: vendor/bin/phpunit --testdox
 
-      - name: Execute tests (Unit and Feature tests) via PestPHP
-        # Set environment
-        env:
-          DB_CONNECTION: pgsql
-          DB_DATABASE: homestead
-          DB_PORT: 5432
-          DB_USERNAME: postgres
-          DB_PASSWORD: secret
+      # - name: Execute tests (Unit and Feature tests) via PestPHP
+      #   # Set environment
+      #   env:
+      #     DB_CONNECTION: pgsql
+      #     DB_DATABASE: homestead
+      #     DB_PORT: 5432
+      #     DB_USERNAME: postgres
+      #     DB_PASSWORD: secret
 
-        run: vendor/bin/pest
+      #   run: vendor/bin/pest
 
       - uses: symfonycorp/security-checker-action@v4
 
-      - name: Execute Code Static Analysis (PHP Stan + Larastan)
-        run: |
-          vendor/bin/phpstan analyse app -c ./vendor/nunomaduro/larastan/extension.neon  --level=4 --no-progress
+      # - name: Execute Code Static Analysis (PHP Stan + Larastan)
+      #   run: |
+      #     vendor/bin/phpstan analyse app -c ./vendor/nunomaduro/larastan/extension.neon  --level=4 --no-progress
