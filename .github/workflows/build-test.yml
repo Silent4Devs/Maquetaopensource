@@ -1,6 +1,9 @@
 name: Build and Test
 run-name: ${{ github.actor }} Build and Test
 on:
+  push:
+    branches:
+      - develop
   pull_request:
     branches:
       - develop

@@ -1,6 +1,9 @@
 name: Security checks
 run-name: ${{ github.actor }} run security checks
 on:
+  push:
+    branches:
+      - develop
   pull_request:
     branches:
       - develop

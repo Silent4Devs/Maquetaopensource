@@ -1,6 +1,9 @@
 name: Check code quality
 run-name: ${{ github.actor }} check code quality
 on:
+  push:
+    branches:
+      - develop
   pull_request:
     branches:
       - develop
