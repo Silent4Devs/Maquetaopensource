@@ -1,4 +1,5 @@
-name: Laravel Tests
+name: Build and Test
+run-name: ${{ github.actor }} Build and Test
 on:
   pull_request:
     branches:
