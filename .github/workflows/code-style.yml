@@ -1,6 +1,9 @@
 name: Check code quality
 run-name: ${{ github.actor }} check code quality
-on: [push, pull_request, workflow_dispatch]
+on:
+  pull_request:
+    branches:
+      - develop
 jobs:
   Code-style:
     runs-on: ubuntu-latest

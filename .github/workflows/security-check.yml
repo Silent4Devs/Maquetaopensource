@@ -1,6 +1,9 @@
 name: Security checks
 run-name: ${{ github.actor }} run security checks
-on: [push, pull_request, workflow_dispatch]
+on:
+  pull_request:
+    branches:
+      - develop
 jobs:
   Security-checks:
     runs-on: ubuntu-latest
