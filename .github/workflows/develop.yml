@@ -14,61 +14,47 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+      - name: Cache Docker layers
+        uses: actions/cache@v2
         with:
-          php-version: "8.2"
-          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv
-          coverage: none
+          path: /var/lib/docker
+          key: ${{ runner.os }}-docker-${{ hashFiles('**/Dockerfile') }}
+          restore-keys: |
+            ${{ runner.os }}-docker-
 
-      - name: Run composer install
-        run: composer install -n --prefer-dist
+      - name: Start Docker
+        run: |
+          docker-compose -f docker-compose-ci.yml up -d
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: /root/.composer/cache
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Install dependencies
+        run: |
+          docker compose exec -T php composer install
 
       - name: Prepare Laravel Application
         run: |
-          ./vendor/bin/pint
+          cp .env.example .env
+          docker compose exec -T php php artisan key:generate
+          docker compose exec -T php php artisan migrate
 
-      # - name: Cache Docker layers
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: /var/lib/docker
-      #     key: ${{ runner.os }}-docker-${{ hashFiles('**/Dockerfile') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-docker-
+      - name: Run code quality tools
+        run: ./vendor/bin/phpunit pint
 
-      # - name: Start Docker
+      # - name: Run tests
       #   run: |
-      #     docker-compose -f docker-compose-ci.yml up -d
-      #     docker compose exec -T php php artisan migrate
+      #     docker-compose exec -T php php artisan test
 
-      # - name: Cache Composer dependencies
-      #   uses: actions/cache@v3
-      #   with:
-      #     path: /root/.composer/cache
-      #     key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-composer-
-
-      # - name: Install dependencies
-      #   run: |
-      #     docker compose exec -T php composer install
-
-      # - name: Prepare Laravel Application
-      #   run: |
-      #     cp .env.example .env
-      #     docker compose exec -T php php artisan key:generate
-
-      # - name: Run code quality tools
-      #   run: vendor/bin/phpunit pint
-
-      # # - name: Run tests
-      # #   run: |
-      # #     docker-compose exec -T php php artisan test
-
-      # - name: Auto-merge to develop
-      #   if: github.event.pull_request.merged == 'false' && github.event_name == 'pull_request' && github.ref == 'refs/heads/develop'
-      #   uses: pascalgn/automerge-action@v0.15.6
-      #   with:
-      #     commit-message: "Auto-merged by GitHub Actions"
-      #     merge-method: "squash" # O el método de merge que prefieras
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Auto-merge to develop
+        if: github.event.pull_request.merged == 'false' && github.event_name == 'pull_request' && github.ref == 'refs/heads/develop'
+        uses: pascalgn/automerge-action@v0.15.6
+        with:
+          commit-message: "Auto-merged by GitHub Actions"
+          merge-method: "squash" # O el método de merge que prefieras
+          github-token: ${{ secrets.GITHUB_TOKEN }}
