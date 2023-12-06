@@ -1,0 +1,27 @@
+name: Deploy to Serverr
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Deploy to Server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ 192.168.9.78 }}
+        username: ${{ desarrollo }}
+        key: ${{ 7EPD0/Eb0KtSDO3o19K8gPJQnaQbwR0wdqnsD3ch4y8 }}
+        port: 22
+        script: |
+          # Comandos de despliegue en el servidor
+          cd /var/contenedor/tabantaj
+          git pull origin develop
+          # Otros comandos necesarios para reiniciar la aplicación, etc.
