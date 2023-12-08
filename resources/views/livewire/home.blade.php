@@ -83,7 +83,7 @@
                                 </svg>
                                 Configuración
                             </div>
-                            @if ($currentStep = 1)
+                            @if ($currentStep = 0)
                                 <div class="col-sm pulse-effect text-dark ">
                                 @else
                                     <div class="col-sm">
