@@ -4,8 +4,8 @@
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
         <a class="align-items-center d-flex m-0 navbar-brand text-wrap" href="{{ route('dashboard') }}">
-            <img src="https://silent4business.com/img/logo_silent.webp" class="navbar-brand-img h-200" alt="...">
-            <span class="ms-3 font-weight-bold">Maqueta Open Source</span>
+            <img src="https://silent4business.com/img/logo_silent.webp" class="navbar-brand-img h-300" alt="...">
+            {{--  <span class="ms-3 font-weight-bold">Maqueta Open Source</span>  --}}
         </a>
     </div>
     <hr class="horizontal dark mt-0">
