@@ -1,4 +1,4 @@
-name: Build and Test
+name: Build and Tes
 run-name: ${{ github.actor }} Build and Test
 on:
   push:
@@ -7,6 +7,11 @@ on:
   pull_request:
     branches:
       - develop
+      - feature/*
+      - hotfix/*
+      - release/*
+      - fix/*
+      - refactor/*
 
 jobs:
   build_and_check:
@@ -70,16 +75,16 @@ jobs:
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
 
-      - name: Install Dependencies
-        if: steps.vendor-cache.outputs.cache-hit != 'true'
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-
       - name: Update Dependencies with latest stable
         if: matrix.dependency-stability == 'prefer-stable'
         run: composer update --prefer-stable
       - name: Update Dependencies with lowest stable
         if: matrix.dependency-stability == 'prefer-lowest'
         run: composer update --prefer-stable --prefer-lowest
+
+      - name: Install Dependencies
+        if: steps.vendor-cache.outputs.cache-hit != 'true'
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       - name: Generate key
         run: php artisan key:generate
