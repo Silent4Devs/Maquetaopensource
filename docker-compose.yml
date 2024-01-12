@@ -65,6 +65,8 @@ services:
       - 9000:80
     networks:
       - maquetanetwork
+    environment:
+    - API_HOST=host.docker.internal:8888  # Use host.docker.internal for MacOS and Windows, or the host machine's IP address
 
   redis-maqueta:
     image: redis:alpine

@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-
+use GuzzleHttp\Client;
 class Home extends Component
 {
     use LivewireAlert;
@@ -13,6 +13,41 @@ class Home extends Component
     public $ataque = [];
     public $victim = [];
     public $currentStep = 0;
+
+    public function mount()
+    {
+        $this->makeApiRequest();
+    }
+
+    public function makeApiRequest()
+    {
+        $url = 'http://localhost:8888/api/rest';
+        $apiKey = 'ADMIN123';
+        $index = 'adversaries';
+
+        $client = new Client();
+
+        try {
+            $response = $client->post($url, [
+                'headers' => [
+                    'KEY' => $apiKey,
+                    'Content-Type' => 'application/json',
+                ],
+                'json' => [
+                    'index' => $index,
+                ],
+            ]);
+
+            // You can now handle the API response as needed
+            $statusCode = $response->getStatusCode();
+            $data = json_decode($response->getBody(), true);
+
+            // Do something with $statusCode and $data
+        } catch (\Exception $e) {
+            // Handle exceptions (e.g., connection error, server error)
+            dd($e->getMessage());
+        }
+    }
 
     public function render()
     {
