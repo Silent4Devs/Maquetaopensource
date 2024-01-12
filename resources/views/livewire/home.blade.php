@@ -204,12 +204,12 @@
                     <h6 class="mb-0">Información de la victima</h6>
                 </div>
                 <div class="card-body pt-4 p-3">
-                    <select class="form-select form-select-lg mb-3" aria-label="Seleccione una victima">
+                    {{-- <select class="form-select form-select-lg mb-3" aria-label="Seleccione una victima">
                         <option selected>Seleccione una victima</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
                         <option value="3">Three</option>
-                    </select>
+                    </select> --}}
                     <p class="font-weight-bold">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                             class="bi bi-person" viewBox="0 0 16 16">
@@ -219,8 +219,8 @@
                         &nbsp;
                         Victima
                     </p>
-                    <p>IP: 192.168.9.100</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <p>IP: {{ $dataAgents[0]['host_ip_addrs'][0] }}</p>
+                    <p>Plataforma: {{ $dataAgents[0]["platform"] }}</p>
                 </div>
             </div>
         </div>

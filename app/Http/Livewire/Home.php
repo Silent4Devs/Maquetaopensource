@@ -13,24 +13,26 @@ class Home extends Component
     public $ataque = [];
     public $victim = [];
     public $currentStep = 0;
+    public $url = 'http://192.168.7.152:8888/api/rest';
+    public $apiKey = 'ADMIN123';
+    public $dataAgents;
 
     public function mount()
     {
-        $this->makeApiRequest();
+        $this->makeApiRequestToOperations();
+        $this->dataAgents = $this->makeApiRequestToAllAgents();
     }
 
-    public function makeApiRequest()
+    public function makeApiRequestToOperations()
     {
-        $url = 'http://192.168.7.152:8888/api/rest';
-        $apiKey = 'ADMIN123';
-        $index = 'adversaries';
+        $index = 'operations';
 
         $client = new Client();
 
         try {
-            $response = $client->post($url, [
+            $response = $client->post($this->url, [
                 'headers' => [
-                    'KEY' => $apiKey,
+                    'KEY' => $this->apiKey,
                     'Content-Type' => 'application/json',
                 ],
                 'json' => [
@@ -41,7 +43,34 @@ class Home extends Component
             // You can now handle the API response as needed
             $statusCode = $response->getStatusCode();
             $data = json_decode($response->getBody(), true);
-            dd($data);
+            // Do something with $statusCode and $data
+        } catch (\Exception $e) {
+            // Handle exceptions (e.g., connection error, server error)
+            dd($e->getMessage());
+        }
+    }
+
+    public function makeApiRequestToAllAgents()
+    {
+        $index = 'agents';
+
+        $client = new Client();
+
+        try {
+            $response = $client->post($this->url, [
+                'headers' => [
+                    'KEY' => $this->apiKey,
+                    'Content-Type' => 'application/json',
+                ],
+                'json' => [
+                    'index' => $index,
+                ],
+            ]);
+
+            // You can now handle the API response as needed
+            $statusCode = $response->getStatusCode();
+            $data = json_decode($response->getBody(), true);
+            return $data;
             // Do something with $statusCode and $data
         } catch (\Exception $e) {
             // Handle exceptions (e.g., connection error, server error)
