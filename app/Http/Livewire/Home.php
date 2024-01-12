@@ -21,7 +21,7 @@ class Home extends Component
 
     public function makeApiRequest()
     {
-        $url = 'http://localhost:8888/api/rest';
+        $url = 'http://192.168.7.152:8888/api/rest';
         $apiKey = 'ADMIN123';
         $index = 'adversaries';
 
@@ -41,7 +41,7 @@ class Home extends Component
             // You can now handle the API response as needed
             $statusCode = $response->getStatusCode();
             $data = json_decode($response->getBody(), true);
-
+            dd($data);
             // Do something with $statusCode and $data
         } catch (\Exception $e) {
             // Handle exceptions (e.g., connection error, server error)
