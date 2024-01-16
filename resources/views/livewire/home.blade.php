@@ -38,33 +38,10 @@
                 </div>
                 <div class="col-lg-7 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
                     <div class="nav-wrapper position-relative d-flex justify-content-end">
-                        <button class="btn btn-primary btn-sm" wire:click="ejecutarataque" wire:loading.remove>Ejecutar
+                        <button class="btn btn-primary btn-sm" wire:click="ejecutarAtaque" wire:loading.remove>Ejecutar
                             ataque</button>
-                        <div wire:loading wire:target="ejecutarataque">
-                            <div class="spinner-grow text-primary" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                            <div class="spinner-grow text-secondary" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                            <div class="spinner-grow text-success" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                            <div class="spinner-grow text-danger" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                            <div class="spinner-grow text-warning" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                            <div class="spinner-grow text-info" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                            <div class="spinner-grow text-light" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                            <div class="spinner-grow text-dark" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
+                        <div wire:loading wire:target="ejecutarAtaque">
+                            @include('components.loaders')
                         </div>
                     </div>
                 </div>
@@ -148,9 +125,18 @@
             <div class="card">
                 <div class="card-header pb-0 px-2">
                     <h6 class="mb-0">Lista de ataques</h6>
-                    <span style="font-size: 14px;">Por favor, seleccione el ataque a ejecutar</span>
+                    <br>
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" wire:model.live="ataque" required>
+                        <option selected>Seleccione una operacion</option>
+                        @foreach ($dataOperations as $item)
+                            <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+                        @endforeach
+                      </select>
+                        <div wire:loading wire:target="ataque">
+                            @include('components.loaders')
+                        </div>
                 </div>
-                <div class="card-body pt-4 p-3">
+                {{-- <div class="card-body pt-4 p-3">
                     <input type="email" class="form-control form-sm" id="exampleFormControlInput1"
                         placeholder="Buscar ...">
                     <div class="form-group mt-2">
@@ -163,8 +149,7 @@
                             </div>
                         @endfor
                     </div>
-
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="col">
@@ -181,8 +166,10 @@
                         &nbsp;
                         Máquina atacante
                     </p>
-                    <p>IP: 192.168.9.100</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    @if ($optionSelected)
+                    <p>IP: {{ $dataGetOperation['host_group'][0]['server'] }}</p>
+                    <p>Name: {{ $dataGetOperation['adversary']['name'] }}</p>
+                    <p>Exe Name: {{ $dataGetOperation['host_group'][0]['exe_name'] }}</p>
                     <p class="font-weight-bold"><svg xmlns="http://www.w3.org/2000/svg" width="32"
                             height="32" fill="currentColor" class="bi bi-exclamation-triangle"
                             viewBox="0 0 16 16">
@@ -194,7 +181,10 @@
                         &nbsp;
                         Descripción del ataque
                     </p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <p>{{ $dataGetOperation['adversary']['description'] }}</p>
+                    @else
+                        <p>En espera de seleccion</p>
+                    @endif
                 </div>
             </div>
         </div>
@@ -219,8 +209,17 @@
                         &nbsp;
                         Victima
                     </p>
-                    <p>IP: {{ $dataAgents[0]['host_ip_addrs'][0] }}</p>
-                    <p>Plataforma: {{ $dataAgents[0]["platform"] }}</p>
+                    @if ($optionSelected)
+                    <p>ID: {{ $dataGetOperation['host_group'][0]['paw'] }}
+                        <p>IP: {{ $dataGetOperation['host_group'][0]['host_ip_addrs'][0] }}</p>
+                        <p>Plataforma: {{ $dataGetOperation['host_group'][0]["platform"] }}</p>
+                        <p>Contacto: {{ $dataGetOperation['host_group'][0]["contact"] }}</p>
+                        <p>Exe: {{ $dataGetOperation['host_group'][0]["exe_name"] }}</p>
+                        <p>Tactica: {{ $dataGetOperation['host_group'][0]['links'][0]['ability']['tactic'] }}</p>
+                        <p>Descripcion: {{ $dataGetOperation['host_group'][0]['links'][0]['ability']['description'] }}</p>
+                    @else
+                        <p>En espera de seleccion</p>
+                    @endif
                 </div>
             </div>
         </div>
