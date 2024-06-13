@@ -7,8 +7,8 @@ use Livewire\Component;
 
 class ScriptsCatalogo extends Component
 {
-
     public $dataAdversaries;
+
     public $apiKey = 'ADMIN123';
 
     public function render()
@@ -34,7 +34,7 @@ class ScriptsCatalogo extends Component
 
             // If $parameter is provided, append it to the URL
             if ($parameter !== null) {
-                $url .= '/' . $parameter;
+                $url .= '/'.$parameter;
             }
 
             $response = $client->get($url, [
@@ -47,6 +47,7 @@ class ScriptsCatalogo extends Component
             // You can now handle the API response as needed
             $statusCode = $response->getStatusCode();
             $data = json_decode($response->getBody(), true);
+
             return $data;
 
             // Do something with $statusCode and $data

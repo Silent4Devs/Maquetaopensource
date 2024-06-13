@@ -2,11 +2,10 @@
 
 namespace App\Http\Livewire\Auth;
 
-use Livewire\Component;
 use App\Models\User;
-
-use Illuminate\Notifications\Notifiable;
 use App\Notifications\ResetPassword;
+use Illuminate\Notifications\Notifiable;
+use Livewire\Component;
 
 class ForgotPassword extends Component
 {
@@ -14,32 +13,36 @@ class ForgotPassword extends Component
 
     public $email = '';
 
-    public $showSuccesNotification = false; 
+    public $showSuccesNotification = false;
+
     public $showFailureNotification = false;
 
     public $showDemoNotification = false;
 
     protected $rules = [
         'email' => 'required|email',
-    ];  
+    ];
 
-    public function mount() {
-        if(auth()->user()){
+    public function mount()
+    {
+        if (auth()->user()) {
             redirect('/dashboard');
         }
     }
 
-    public function routeNotificationForMail() {
+    public function routeNotificationForMail()
+    {
         return $this->email;
     }
 
-    public function recoverPassword() { 
-        if(env('IS_DEMO')) {
+    public function recoverPassword()
+    {
+        if (env('IS_DEMO')) {
             $this->showDemoNotification = true;
         } else {
             $this->validate();
             $user = User::where('email', $this->email)->first();
-            if($user){
+            if ($user) {
                 $this->notify(new ResetPassword($user->id));
                 $this->showSuccesNotification = true;
                 $this->showFailureNotification = false;
