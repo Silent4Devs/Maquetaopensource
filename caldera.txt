@@ -1,0 +1,18 @@
+Acceso Kali
+
+user:user
+
+Usuarios Caldera
+
+red: bU4U5ayUk0ntMvM72wY
+admin: D8h4NkyL9nv15t8YRWv
+blue: b8dqKTSG9ilmASq26
+
+
+Agentes: es la mismo que la victima
+
+//para ejecutar ataques primero se necesita una operacion y de ahi usar una habilidad
+Operations: es igual al ataque
+abilities: es el tipo de ataque
+
+usar operacion testdesa para probar el check de un servidor
