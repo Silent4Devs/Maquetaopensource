@@ -15,7 +15,7 @@ class Home extends Component
     use LivewireAlert;
 
     public $loader_timer = 0;
-    public $ataque = '';
+    public $ataque;
     public $victim = [];
     public $currentStep = 0;
     public $url = 'http://192.168.7.152:8888/api/v2/';
@@ -37,7 +37,7 @@ class Home extends Component
         //$this->dataOperations = $this->makeApiRequestToAllOperations();
         $this->dataAdversaries = $this->makeApiRequestToAllAdversaries();
         $this->dataAgents = $this->makeApiRequestToAllAgents();
-        //dd($this->dataAgents[1]);
+        dd($this->dataAdversaries);
     }
 
     public function updatedAtaque($property){
@@ -167,44 +167,35 @@ class Home extends Component
         }
     }
 
-    public function consumoApi(string $index){
-        $client = new Client();
-
-        try {
-            $response = $client->post('http://192.168.7.152:8888/api/v2', [
-                'headers' => [
-                    'KEY' => $this->apiKey,
-                    'Content-Type' => 'application/json',
-                ],
-                'json' => [
-                    'index' => '/adversaries',
-                ],
-            ]);
-
-            // You can now handle the API response as needed
-            $statusCode = $response->getStatusCode();
-            $data = json_decode($response->getBody(), true);
-            return $data;
-            // Do something with $statusCode and $data
-        } catch (\Exception $e) {
-            // Handle exceptions (e.g., connection error, server error)
-            dd($e->getMessage());
-        }
-    }
-
     public function ejecutarAtaque(){
-        if(!is_null($this->operationID)){
-            dd($this->operationID);
-        }else{
-            $this->alert('warning', 'Seleccione un ataque', [
-                'position' => 'center',
-                'timer' => 3000,
-                'toast' => true,
-                'timerProgressBar' => true,
-                'showConfirmButton' => true,
-                'onConfirmed' => '',
-                ]);
+        $valido = true;
+
+        if (is_null($this->nombre)) {
+            $this->callAlerta('Asigne un nombre');
+            $valido = false;
+        }
+
+        if (empty($this->ataque)) {
+            $this->callAlerta('Seleccione un ataque');
+            $valido = false;
+        }
+
+        if ($valido) {
+            dd($this->nombre, $this->ataque);
         }
     }
 
+    public function callAlerta($mensaje){
+        $this->alert('warning', $mensaje, [
+            'position' => 'center',
+            'timer' => 3000,
+            'toast' => true,
+            'timerProgressBar' => true,
+            'showConfirmButton' => true,
+            'onConfirmed' => '',
+            ]);
+    }
+
+    //planner id= aaa7c857-37a0-4c4a-85f7-4e9f7f30e31a
+    //source_id =d32b9c3-9593-4c33-b0db-e2007315096b
 }

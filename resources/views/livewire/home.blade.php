@@ -131,7 +131,7 @@
                                 <h6 class="mb-0">Creación de ataques</h6>
                                 <br>
                                 <input type="text" class="form-control" id="Nombre" placeholder="Nombre del ataque"
-                                    wire:model.live='nombre'>
+                                    wire:model.live='nombre' required>
                                 <br>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example"
                                     wire:model.live="ataque" required>
