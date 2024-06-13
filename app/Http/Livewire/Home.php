@@ -277,7 +277,7 @@ class Home extends Component
 
         if ($valido) {
             $CreacionOp = $this->consumoOperationPost($this->nombre, $this->ataque);
-            dd($CreacionOp);
+            $this->currentStep = 2;
         }
     }
 

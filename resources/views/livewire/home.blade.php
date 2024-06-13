@@ -61,9 +61,9 @@
                                 Configuración
                             </div>
                             @if ($currentStep = 1)
-                            <div class="col-sm pulse-effect text-dark ">
+                            <div class="col-sm">
                                 @else
-                                <div class="col-sm">
+                                <div class="col-sm text-info pulse-effect ">
                                     @endif
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-2-circle" viewBox="0 0 16 16">
