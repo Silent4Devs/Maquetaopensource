@@ -29,7 +29,7 @@
                                         </th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Tipo
+                                            Plataforma
                                         </th>
                                         <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -46,21 +46,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($dataAgents as $item)
                                     <tr>
                                         <td class="ps-4">
-                                            <p class="text-xs font-weight-bold mb-0">1</p>
+                                            <p class="text-xs font-weight-bold mb-0">
+                                                {{ $item['paw'] }}
+                                            </p>
                                         </td>
                                         <td>
-                                            <div>
-                                                <img src="https://www.pngall.com/wp-content/uploads/11/World-Wide-Web-Address-PNG.png"
-                                                    class="avatar avatar-sm me-3">
-                                            </div>
+                                            <p class="text-xs font-weight-bold mb-0">
+                                                {{ $item['platform'] }}
+                                            </p>
                                         </td>
                                         <td class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">192.168.9.1</p>
+                                            <p class="text-xs font-weight-bold mb-0">
+                                                {{ $item['server'] }}
+                                            </p>
                                         </td>
                                         <td class="text-center">
-                                            <span class="text-secondary text-xs font-weight-bold">16/06/18</span>
+                                            <span class="text-secondary text-xs font-weight-bold">
+                                                {{ $item['created'] }}
+                                            </span>
                                         </td>
                                         <td class="text-center">
                                             <a href="#" class="mx-3" data-bs-toggle="tooltip"
@@ -72,110 +78,7 @@
                                             </span>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="ps-4">
-                                            <p class="text-xs font-weight-bold mb-0">2</p>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <img src="https://www.pngall.com/wp-content/uploads/11/World-Wide-Web-Address-PNG.png"
-                                                    class="avatar avatar-sm me-3">
-                                            </div>
-                                        </td>
-                                        <td class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">192.168.9.2</p>
-                                        </td>
-                                        <td class="text-center">
-                                            <span class="text-secondary text-xs font-weight-bold">05/05/20</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <a href="#" class="mx-3" data-bs-toggle="tooltip"
-                                                data-bs-original-title="Edit user">
-                                                <i class="fas fa-user-edit text-secondary"></i>
-                                            </a>
-                                            <span>
-                                                <i class="cursor-pointer fas fa-trash text-secondary"></i>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="ps-4">
-                                            <p class="text-xs font-weight-bold mb-0">3</p>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <img src="https://media.es.wired.com/photos/631ec3ef64fe55a038bdc9a8/16:9/w_1280,c_limit/How-to-Choose-a-Laptop-Gear-GettyImages-1235728903.jpg"
-                                                    class="avatar avatar-sm me-3">
-                                            </div>
-                                        </td>
-                                        <td class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">192.168.9.3</p>
-                                        </td>
-                                        <td class="text-center">
-                                            <span class="text-secondary text-xs font-weight-bold">23/06/20</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <a href="#" class="mx-3" data-bs-toggle="tooltip"
-                                                data-bs-original-title="Edit user">
-                                                <i class="fas fa-user-edit text-secondary"></i>
-                                            </a>
-                                            <span>
-                                                <i class="cursor-pointer fas fa-trash text-secondary"></i>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="ps-4">
-                                            <p class="text-xs font-weight-bold mb-0">4</p>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <img src="https://img.freepik.com/vector-gratis/icono-vector-isometrico-aislado-rack-servidor-equipo-computacion-nube-almacenamiento-informacion_107791-4530.jpg"
-                                                    class="avatar avatar-sm me-3">
-                                            </div>
-                                        </td>
-                                        <td class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">192.168.9.4</p>
-                                        </td>
-                                        <td class="text-center">
-                                            <span class="text-secondary text-xs font-weight-bold">26/10/17</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <a href="#" class="mx-3" data-bs-toggle="tooltip"
-                                                data-bs-original-title="Edit user">
-                                                <i class="fas fa-user-edit text-secondary"></i>
-                                            </a>
-                                            <span>
-                                                <i class="cursor-pointer fas fa-trash text-secondary"></i>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="ps-4">
-                                            <p class="text-xs font-weight-bold mb-0">5</p>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <img src="https://media.es.wired.com/photos/631ec3ef64fe55a038bdc9a8/16:9/w_1280,c_limit/How-to-Choose-a-Laptop-Gear-GettyImages-1235728903.jpg"
-                                                    class="avatar avatar-sm me-3">
-                                            </div>
-                                        </td>
-                                        <td class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">192.168.9.5</p>
-                                        </td>
-                                        <td class="text-center">
-                                            <span class="text-secondary text-xs font-weight-bold">23/01/21</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <a href="#" class="mx-3" data-bs-toggle="tooltip"
-                                                data-bs-original-title="Edit user">
-                                                <i class="fas fa-user-edit text-secondary"></i>
-                                            </a>
-                                            <span>
-                                                <i class="cursor-pointer fas fa-trash text-secondary"></i>
-                                            </span>
-                                        </td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -191,8 +94,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo objetivo</h5>
-                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal"
-                            aria-label="Close">
+                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -220,8 +122,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn bg-gradient-secondary"
-                            data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Cerrar</button>
                         <button type="button" class="btn bg-gradient-primary">Guardar</button>
                     </div>
                 </div>
