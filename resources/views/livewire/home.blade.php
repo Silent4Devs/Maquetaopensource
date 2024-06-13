@@ -131,7 +131,7 @@
                                 <h6 class="mb-0">Creación de ataques</h6>
                                 <br>
                                 <input type="text" class="form-control" id="Nombre" placeholder="Nombre del ataque"
-                                    wire:model='nombre'>
+                                    wire:model.live='nombre'>
                                 <br>
                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example"
                                     wire:model.live="ataque" required>
@@ -199,36 +199,26 @@
                             <div class="card-header pb-0 px-3">
                                 <h6 class="mb-0">Información de la victima</h6>
                             </div>
+                            <div wire:loading wire:target="ataque">
+                                @include('components.loaders')
+                            </div>
                             <div class="card-body pt-4 p-3">
-                                {{-- <select class="form-select form-select-lg mb-3"
-                                    aria-label="Seleccione una victima">
-                                    <option selected>Seleccione una victima</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select> --}}
-                                {{-- <p class="font-weight-bold">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-                                        class="bi bi-person" viewBox="0 0 16 16">
+                                <p class="font-weight-bold"><svg xmlns="http://www.w3.org/2000/svg" width="32"
+                                        height="32" fill="currentColor" class="bi bi-laptop" viewBox="0 0 16 16">
                                         <path
-                                            d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664z" />
+                                            d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5" />
                                     </svg>
                                     &nbsp;
-                                    Victima
+                                    Máquina victima
                                 </p>
                                 @if ($optionSelected)
-                                <p>ID: {{ $dataGetOperation['host_group'][0]['paw'] }}
-                                <p>IP: {{ $dataGetOperation['host_group'][0]['host_ip_addrs'][0] }}</p>
-                                <p>Plataforma: {{ $dataGetOperation['host_group'][0]["platform"] }}</p>
-                                <p>Contacto: {{ $dataGetOperation['host_group'][0]["contact"] }}</p>
-                                <p>Exe: {{ $dataGetOperation['host_group'][0]["exe_name"] }}</p>
-                                <p>Tactica: {{ $dataGetOperation['host_group'][0]['links'][0]['ability']['tactic'] }}
-                                </p>
-                                <p>Descripcion: {{
-                                    $dataGetOperation['host_group'][0]['links'][0]['ability']['description'] }}</p>
+                                <p>Name: {{ $dataAgents[1]['paw'] }}</p>
+                                <p>Ip: {{ $dataAgents[1]['server'] }}</p>
+                                <p>Exe: {{ $dataAgents[1]['exe_name'] }}</p>
+                                <p>Plataforma: {{ $dataAgents[1]['platform'] }}</p>
                                 @else
                                 <p>En espera de seleccion</p>
-                                @endif --}}
+                                @endif
                             </div>
                         </div>
                     </div>

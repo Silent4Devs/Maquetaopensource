@@ -36,7 +36,8 @@ class Home extends Component
     {
         //$this->dataOperations = $this->makeApiRequestToAllOperations();
         $this->dataAdversaries = $this->makeApiRequestToAllAdversaries();
-        //dd($this->dataAdversaries);
+        $this->dataAgents = $this->makeApiRequestToAllAgents();
+        //dd($this->dataAgents[1]);
     }
 
     public function updatedAtaque($property){
@@ -114,14 +115,14 @@ class Home extends Component
     {
         $index = 'operations';
 
-        return $this->consumoApi($index);
+        return $this->consumoApiv2($index);
     }
 
     public function makeApiRequestToAllAgents()
     {
         $index = 'agents';
 
-        return $this->consumoApi($index);
+        return $this->consumoApiv2($index);
     }
 
     public function makeApiRequestToAllAdversaries()
