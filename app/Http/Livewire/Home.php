@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Livewire\Component;
 use Illuminate\Http\Client\Pool;
@@ -17,10 +18,9 @@ class Home extends Component
     use LivewireAlert;
 
     public $loader_timer = 0;
-    public $ataque;
     public $victim = [];
-    public $currentStep = 0;
-    public $url = 'http://192.168.7.152:8888/api/v2/';
+    public $currentStep = 1;
+    public $url = 'host.docker.internal:8888/api/v2/';
     public $apiKey = 'ADMIN123';
     public $dataAgents;
     public $dataOperations;
@@ -30,6 +30,9 @@ class Home extends Component
     public $dataGetOperation;
     public $operationID = null;
     public $nombre;
+    public $ataque;
+    public $ataque_id = null;
+    // public $info_ataque = null;
     public $orderingAttack = 0;
     public $arrayAttacks = [];
     public $adversarieDescription;
@@ -39,6 +42,7 @@ class Home extends Component
         $this->dataOperations = $this->makeApiRequestToAllOperations();
         $this->dataAdversaries = $this->makeApiRequestToAllAdversaries();
         $this->dataAgents = $this->makeApiRequestToAllAgents();
+        // $this->currentStep = 1;
         //dd($this->dataOperations);
     }
 
@@ -90,7 +94,11 @@ class Home extends Component
 
     public function render()
     {
-        return view('livewire.home');
+        if($this->currentStep == 2)
+        {
+            $info = Carbon::now();
+        }
+        return view('livewire.home', ['info_ataque' => $info]);
     }
 
     public function consumoApiv2(string $index, ?string $parameter = null)
@@ -278,6 +286,34 @@ class Home extends Component
         if ($valido) {
             $CreacionOp = $this->consumoOperationPost($this->nombre, $this->ataque);
             $this->currentStep = 2;
+            $this->ataque_id = $CreacionOp['id'];
+            // dd($CreacionOp['id']);
+            $this->getEventLogById('event-logs', $CreacionOp['id']);
+        }
+    }
+
+    public function getEventLogById(string $index, string $parameter){
+        $client = new Client();
+        try {
+            $url = $this->url. 'operations/'.$parameter. '/'.$index;
+
+            $response = $client->post($url, [
+                'headers' => [
+                    'KEY' => $this->apiKey,
+                    'Content-Type' => 'application/json',
+                ],
+            ]);
+
+            // You can now handle the API response as needed
+            $statusCode = $response->getStatusCode();
+            $data = json_decode($response->getBody(), true);
+
+            return $data;
+
+            // Do something with $statusCode and $data
+        } catch (\Exception $e) {
+            // Handle exceptions (e.g., connection error, server error)
+            dd($e->getMessage());
         }
     }
 

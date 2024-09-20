@@ -30,7 +30,7 @@ class ScriptsCatalogo extends Component
     {
         $client = new Client();
         try {
-            $url = 'http://192.168.7.152:8888/api/v2/'.$index;
+            $url = 'host.docker.internal:8888/api/v2/'.$index;
 
             // If $parameter is provided, append it to the URL
             if ($parameter !== null) {
