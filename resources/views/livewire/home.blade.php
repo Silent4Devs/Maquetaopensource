@@ -50,16 +50,20 @@
         <div class="container mt-2">
             @include('progressbar')
 
+            @switch($currentStep)
+            @case(1)
             <div class="container-fluid py-4">
                 {{-- Step uno --}}
                 @include('steps.stepone')
                 {{-- Step uno --}}
             </div>
-            @if ($currentStep == 2)
-            <div wire:poll.3s>
-                <h1>Data: {{ $info_ataque }}</h1>
-            </div>
-            @endif
+            @break
+            @case(2)
+            @include('steps.steptwo')
+            @break
+            @default
+
+            @endswitch
         </div>
     </div>
 </div>

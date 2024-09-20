@@ -94,9 +94,14 @@ class Home extends Component
 
     public function render()
     {
-        if($this->currentStep == 2)
+        $info = null;
+        if($this->currentStep == 2 && $this->ataque_id != null)
         {
-            $info = Carbon::now();
+            // $info = Carbon::now();
+            $info = $this->getEventLogById('event-logs', $this->ataque_id);
+            // if (!empty($info)) {
+            //     dd($info);
+            // }
         }
         return view('livewire.home', ['info_ataque' => $info]);
     }
@@ -309,6 +314,7 @@ class Home extends Component
             $data = json_decode($response->getBody(), true);
 
             return $data;
+            // return $statusCode;
 
             // Do something with $statusCode and $data
         } catch (\Exception $e) {
