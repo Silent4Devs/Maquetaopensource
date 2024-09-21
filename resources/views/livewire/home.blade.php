@@ -61,6 +61,9 @@
             @case(2)
             @include('steps.steptwo')
             @break
+            @case(3)
+            @include('steps.stepthree')
+            @break
             @default
 
             @endswitch

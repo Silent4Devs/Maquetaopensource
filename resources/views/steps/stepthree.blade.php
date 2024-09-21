@@ -1,5 +1,6 @@
+<h1>RESULTADOS</h1>
 <div class="row">
-    <div class="col-3">
+    <div class="col">
         <div class="card">
             <div class="card-header pb-0 px-2">
                 <h6 class="mb-0">Creación de ataques</h6>
@@ -89,11 +90,13 @@
             </div>
         </div>
     </div>
-    <div class="col-9">
+</div>
+<div class="row">
+    <div class="col">
         <div class="card">
             @if($ataque_id != null)
-            <div class="card-body" wire:poll.5s>
-                @forelse ($info_ataque as $key_ataque => $inf_ata)
+            <div class="card-body">
+                @forelse ($data as $key_ataque => $inf_ata)
                 <ul>
                     <li>
                         Log: {{$key_ataque}}

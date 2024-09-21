@@ -37,13 +37,19 @@ class Home extends Component
     public $arrayAttacks = [];
     public $adversarieDescription;
 
+    public $data;
+    public $lastData;
+    public $lastChangeTime;
+
     public function mount()
     {
         $this->dataOperations = $this->makeApiRequestToAllOperations();
         $this->dataAdversaries = $this->makeApiRequestToAllAdversaries();
         $this->dataAgents = $this->makeApiRequestToAllAgents();
-        // $this->currentStep = 1;
-        //dd($this->dataOperations);
+
+        $this->data = '';
+        $this->lastData = $this->data;
+        $this->lastChangeTime = Carbon::now();
     }
 
     public function updatedAtaque($property){
@@ -99,11 +105,27 @@ class Home extends Component
         {
             // $info = Carbon::now();
             $info = $this->getEventLogById('event-logs', $this->ataque_id);
+            $this->data = $info;
+            $this->checkForChanges();
             // if (!empty($info)) {
             //     dd($info);
             // }
         }
         return view('livewire.home', ['info_ataque' => $info]);
+    }
+
+    public function checkForChanges(){
+
+        if($this->data !== $this->lastData){
+            $this->lastData = $this->data;
+            $this->lastChangeTime= Carbon::now();
+        }
+
+        if (Carbon::now()->diffInMinutes($this->lastChangeTime) >= 2) {
+            # code...
+            // dd('Alerta Actividad');
+            $this->currentStep = 3;
+        }
     }
 
     public function consumoApiv2(string $index, ?string $parameter = null)
