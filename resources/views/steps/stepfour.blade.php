@@ -1,15 +1,15 @@
+<h1>RESULTADOS</h1>
 <div class="row">
-    <div class="col-3">
+    <div class="col">
         <div class="card">
             <div class="card-header pb-0 px-2">
                 <h6 class="mb-0">Creación de ataques</h6>
                 <br>
                 <p class="font-weight-bold">
-                    Nombre del Ataque: <br>
+                    Resumen Ejecutivo
                     {{ $nombre}}
                 </p>
                 <p class="font-weight-bold">
-                    Tipo de Ataque: <br>
                     {{ $ataque_name}}
                 </p>
             </div>
@@ -82,11 +82,13 @@
             </div>
         </div>
     </div>
-    <div class="col-9">
+</div>
+<div class="row">
+    <div class="col">
         <div class="card">
             @if($ataque_id != null)
-            <div class="card-body" wire:poll.5s>
-                @forelse ($info_ataque as $key_ataque => $inf_ata)
+            <div class="card-body">
+                @forelse ($data as $key_ataque => $inf_ata)
                 <ul>
                     <li>
                         Fase: {{$key_ataque + 1}}
@@ -97,15 +99,11 @@
                             <li>{{ucfirst($keyIA)}}:</li>
                             <ul>
                                 @foreach ($IA as $keySubArray => $subArr)
-                                <li>{{ucfirst($keySubArray)}} -
-                                    {{var_dump($subArr)}}
-                                </li>
+                                <li>{{ucfirst($keySubArray)}} - {{var_dump($subArr)}}</li>
                                 @endforeach
                             </ul>
                             @else
-                            <li>
-                                {{ucfirst($keyIA)}} - {{var_dump($IA ?? '')}}
-                            </li>
+                            <li>{{ucfirst($keyIA)}} - {{var_dump($IA ?? '')}}</li>
                             @endif
                             @endforeach
                         </ul>
@@ -117,6 +115,9 @@
                 {{-- <h1>Data: {{ var_dump($info_ataque) ?? '' }}</h1> --}}
             </div>
             @endif
+            <div class="position-relative d-flex justify-content-end">
+                <button class="btn btn-primary btn-sm" wire:click="reporte">Continuar</button>
+            </div>
         </div>
     </div>
 </div>

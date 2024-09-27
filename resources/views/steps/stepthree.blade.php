@@ -11,15 +11,8 @@
                 </p>
                 <p class="font-weight-bold">
                     Tipo de Ataque: <br>
-                    {{ $nombre}}
+                    {{ $ataque_name}}
                 </p>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example" wire:model.live="ataque"
-                    required>
-                    <option selected>Seleccione un adversario</option>
-                    @foreach ($dataAdversaries as $item)
-                    <option value="{{ $item['adversary_id'] }}">{{ $item['name'] }}</option>
-                    @endforeach
-                </select>
             </div>
             <div class="card-header pb-0 px-3">
                 <h6 class="mb-0">Información del atacante</h6>
@@ -99,7 +92,7 @@
                 @forelse ($data as $key_ataque => $inf_ata)
                 <ul>
                     <li>
-                        Log: {{$key_ataque}}
+                        Fase: {{$key_ataque + 1}}
                         <ul>
                             @foreach ($inf_ata as $keyIA => $IA)
                             @if ($keyIA == "agent_metadata" || $keyIA == "operation_metadata" || $keyIA ==
@@ -123,6 +116,9 @@
                 {{-- <h1>Data: {{ var_dump($info_ataque) ?? '' }}</h1> --}}
             </div>
             @endif
+            <div class="position-relative d-flex justify-content-end">
+                <button class="btn btn-primary btn-sm" wire:click="reporte">Continuar</button>
+            </div>
         </div>
     </div>
 </div>

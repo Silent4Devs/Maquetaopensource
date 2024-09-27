@@ -59,13 +59,19 @@
             </div>
             @break
             @case(2)
-            @include('steps.steptwo')
+            <div class="container-fluid py-4">
+                @include('steps.steptwo')
+            </div>
             @break
             @case(3)
-            @include('steps.stepthree')
+            <div class="container-fluid py-4">
+                @include('steps.stepthree')
+            </div>
             @break
             @default
-
+            <div class="container-fluid py-4">
+                @include('steps.stepfour')
+            </div>
             @endswitch
         </div>
     </div>

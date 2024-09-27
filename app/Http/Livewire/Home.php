@@ -32,6 +32,7 @@ class Home extends Component
     public $nombre;
     public $ataque;
     public $ataque_id = null;
+    public $ataque_name = null;
     // public $info_ataque = null;
     public $orderingAttack = 0;
     public $arrayAttacks = [];
@@ -288,13 +289,27 @@ class Home extends Component
             // You can now handle the API response as needed
             $statusCode = $response->getStatusCode();
             $data = json_decode($response->getBody(), true);
-            return $data;
-
+            $datosProcesados = $this->procesarRecursivamente($data);
+            // dd($datosProcesados);
+            return $datosProcesados;
             // Do something with $statusCode and $data
         } catch (\Exception $e) {
             // Handle exceptions (e.g., connection error, server error)
             dd($e->getMessage());
         }
+    }
+
+    public function procesarRecursivamente($datos){
+        return array_map(function ($dato){
+
+            if(is_array($dato)){
+            return $this->procesarRecursivamente($dato);
+            }
+            if(is_string($dato)){
+                return preg_replace('/^\w+\(\d+\)\s/', '', $dato);
+            }
+            return $dato;
+        }, $datos);
     }
 
     public function ejecutarAtaque(){
@@ -314,6 +329,7 @@ class Home extends Component
             $CreacionOp = $this->consumoOperationPost($this->nombre, $this->ataque);
             $this->currentStep = 2;
             $this->ataque_id = $CreacionOp['id'];
+            $this->ataque_name =  $CreacionOp['adversary']["name"];
             // dd($CreacionOp['id']);
             $this->getEventLogById('event-logs', $CreacionOp['id']);
         }
