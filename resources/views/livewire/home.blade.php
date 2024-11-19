@@ -38,6 +38,13 @@
                 </div>
                 <div class="col-lg-7 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
                     <div class="nav-wrapper position-relative d-flex justify-content-end">
+                        <button class="btn btn-primary btn-sm" wire:click="reiniciarOperacion" wire:loading.remove>
+                            Restablecer Operación</button>
+                        <div wire:loading wire:target="reiniciarOperacion">
+                            @include('components.loaders')
+                        </div>
+                    </div>
+                    <div class="nav-wrapper position-relative d-flex justify-content-end">
                         <button class="btn btn-primary btn-sm" wire:click="ejecutarAtaque" wire:loading.remove>Ejecutar
                             ataque</button>
                         <div wire:loading wire:target="ejecutarAtaque">

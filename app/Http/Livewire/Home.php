@@ -124,8 +124,57 @@ class Home extends Component
 
         if (Carbon::now()->diffInMinutes($this->lastChangeTime) >= 2) {
             # code...
-            // dd('Alerta Actividad');
             $this->currentStep = 3;
+        }
+    }
+
+    public function reiniciarOperacion(){
+        $this->data = '';
+        $this->nombre = null;
+        $this->ataque = null;
+        $this->currentStep = 1;
+    }
+
+    public function reporte()
+    {
+        $array_reporte = [];
+
+        $info_final = end($this->data);
+
+        $array_reporte["resumen"] = [
+            "n_hosts"=> $info_final["agent_metadata"]->count(),
+            "periodo_ejecucion" => Carbon::parse($info_final["agent_metadata"]["created"])->format("d-M-Y h:i:s") . '-' . Carbon::now()->format("d-M-Y h:i:s"),
+        ];
+
+        $array_reporte["detalles"] = [
+            "direcciones_ip"=> [
+                "pid" => $info_final["agent_metadata"]["pid"],
+                "ppid" => $info_final["agent_metadata"]["ppid"],
+            ],
+            "username" => $info_final["agent_metadata"]["username"],
+            "platform" => $info_final["plantform"],
+            "host" => $info_final["agent_metadata"]["host"],
+        ];
+
+        foreach ($this->data as $keyIA => $value) {
+            # code...
+            if ($keyIA == "agent_metadata" || $keyIA == "operation_metadata"
+            || $keyIA == "attack_metadata" || $keyIA == "ability_metadata"){
+
+                foreach ($keyIA as $keySubArray => $subArr){
+
+                }
+            } else {
+
+            }
+
+            $array_reporte["comandos"] = [
+                "exitosos" => [],
+                "fallidos" => [],
+                "omitidos" => [],
+            ];
+            dd($array_reporte);
+            $this->currentStep = 4;
         }
     }
 
@@ -378,7 +427,7 @@ class Home extends Component
                 $this->dataGetOperation = $data;
                 $this->operationID = $property;
                 $this->orderingAttack = count($this->dataGetOperation['atomic_ordering']);
-                dd($this->dataGetOperation, $this->orderingAttack);
+                // dd($this->dataGetOperation, $this->orderingAttack);
                 // Do something with $statusCode and $data
             } catch (\Exception $e) {
                 // Handle exceptions (e.g., connection error, server error)

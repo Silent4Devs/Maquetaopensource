@@ -19,7 +19,7 @@
             </div>
         </div>
         <br> --}}
-        <div class="card">
+        <div class="card h-100" style="min-height: 20vh">
             <div class="card-header pb-0 px-2">
                 <h6 class="mb-0">Creación de ataques</h6>
                 <br>
@@ -40,11 +40,11 @@
         </div>
     </div>
     <div class="col">
-        <div class="card">
+        <div class="card h-100">
             <div class="card-header pb-0 px-3">
                 <h6 class="mb-0">Información del atacante</h6>
             </div>
-            <div class="card-body pt-4 p-3">
+            <div class="card-body pt-4 p-3" style="min-height:65vh">
                 <p class="font-weight-bold"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                         fill="currentColor" class="bi bi-laptop" viewBox="0 0 16 16">
                         <path
@@ -69,7 +69,7 @@
                     Descripción del ataque:
                 </p>
                 <p>{{ $adversarieDescription }}</p>
-                <p class="font-weight-bold"> Habilidades:</p>
+                {{-- <p class="font-weight-bold"> Habilidades:</p>
                 <div style="overflow-y: auto; max-height: 400px;">
                     @foreach ($dataGetAbilities as $item)
                     <span>{{ $item['name'] }}</span>
@@ -79,6 +79,13 @@
                         <li>{{ $item['description'] }}</li>
                     </ol>
                     @endforeach
+                </div> --}}
+                <!-- Button trigger modal -->
+                <div style="display: flex; justify-content: center; border-top: solid 1px gray; padding: 10px;">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong"
+                        style="margin: auto">
+                        Ver detalles
+                    </button>
                 </div>
                 @else
                 <p>En espera de seleccion</p>
@@ -87,7 +94,7 @@
         </div>
     </div>
     <div class="col">
-        <div class="card">
+        <div class="card h-100">
             <div class="card-header pb-0 px-3">
                 <h6 class="mb-0">Información de la victima</h6>
             </div>
@@ -115,3 +122,42 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Habilidades</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @if ($optionSelected)
+                <p>{{ $adversarieDescription }}</p>
+                <p class="font-weight-bold"> Habilidades:</p>
+                <div style="overflow-y: auto; max-height: 400px;">
+                    @foreach ($dataGetAbilities as $item)
+                    <span>{{ $item['name'] }}</span>
+                    <ol>
+                        <li>{{ $item['tactic'] }}</li>
+                        <li>{{ $item['technique_name'] }}</li>
+                        <li>{{ $item['description'] }}</li>
+                    </ol>
+                    @endforeach
+                </div>
+                @endif
+                <div class="modal-footer">
+                    <button style="display: flex; justify-content: center;" data-dismiss="modal">Close</button>
+                    {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                </div>
+            </div>
+        </div>
+
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    </div>
