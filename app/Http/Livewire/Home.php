@@ -12,6 +12,7 @@ use GuzzleHttp\Promise;
 use Illuminate\Support\Collection;
 use Ramsey\Uuid\Uuid;
 use stdClass;
+use VXM\Async\Async;
 
 class Home extends Component
 {
@@ -56,58 +57,57 @@ class Home extends Component
         $this->lastChangeTime = Carbon::now();
     }
 
-    public function updatedAtaque($property){
+    public function updatedAtaque($property)
+    {
         $dataArray = []; // Array to store all response data
         $client = new Client();
-            try {
-                $response = $client->get($this->url.'adversaries/'.$property, [
-                    'headers' => [
-                        'KEY' => $this->apiKey,
-                        'Content-Type' => 'application/json',
-                    ],
-                ]);
+        try {
+            $response = $client->get($this->url . 'adversaries/' . $property, [
+                'headers' => [
+                    'KEY' => $this->apiKey,
+                    'Content-Type' => 'application/json',
+                ],
+            ]);
 
-                // You can now handle the API response as needed
-                $statusCode = $response->getStatusCode();
-                $data = json_decode($response->getBody(), true);
-                $this->optionSelected = true;
-                $this->dataGetOperation = $data;
-                $this->operationID = $property;
-                $this->adversarieDescription = $data['description'];
-                $this->orderingAttack = count($this->dataGetOperation['atomic_ordering']);
+            // You can now handle the API response as needed
+            $statusCode = $response->getStatusCode();
+            $data = json_decode($response->getBody(), true);
+            $this->optionSelected = true;
+            $this->dataGetOperation = $data;
+            $this->operationID = $property;
+            $this->adversarieDescription = $data['description'];
+            $this->orderingAttack = count($this->dataGetOperation['atomic_ordering']);
 
-                // Inicializamos el arreglo para almacenar las respuestas
-                $respuestas = [];
+            // Inicializamos el arreglo para almacenar las respuestas
+            $respuestas = [];
 
-                // Iteramos el proceso tantas veces como sea necesario
-                for ($i = 0; $i < $this->orderingAttack; $i++) {
-                    // Suponiendo que $this->dataGetOperation['atomic_ordering'] es un array con datos diferentes en cada iteración
+            // Iteramos el proceso tantas veces como sea necesario
+            for ($i = 0; $i < $this->orderingAttack; $i++) {
+                // Suponiendo que $this->dataGetOperation['atomic_ordering'] es un array con datos diferentes en cada iteración
 
-                    // Obtener el valor de 'atomic_ordering' para esta iteración
-                    $atomicOrdering = $this->dataGetOperation['atomic_ordering'][$i];
+                // Obtener el valor de 'atomic_ordering' para esta iteración
+                $atomicOrdering = $this->dataGetOperation['atomic_ordering'][$i];
 
-                    // Consumir la API y almacenar la respuesta en el arreglo
-                    $data = $this->consumoApiv2('abilities', $atomicOrdering);
+                // Consumir la API y almacenar la respuesta en el arreglo
+                $data = $this->consumoApiv2('abilities', $atomicOrdering);
 
-                    // Agregar la respuesta al arreglo de respuestas
-                    $respuestas[] = $data;
-                }
-
-                // Puedes imprimir o hacer lo que quieras con los resultados
-                $this->dataGetAbilities = $respuestas;
-
-            } catch (\Exception $e) {
-                // Handle exceptions (e.g., connection error, server error)
-                dd($e->getMessage());
+                // Agregar la respuesta al arreglo de respuestas
+                $respuestas[] = $data;
             }
+
+            // Puedes imprimir o hacer lo que quieras con los resultados
+            $this->dataGetAbilities = $respuestas;
+        } catch (\Exception $e) {
+            // Handle exceptions (e.g., connection error, server error)
+            dd($e->getMessage());
+        }
     }
 
     public function render()
     {
         $oD = null;
         $info = null;
-        if($this->currentStep == 2 && $this->ataque_id != null)
-        {
+        if ($this->currentStep == 2 && $this->ataque_id != null) {
             // $info = Carbon::now();
             $info = $this->getEventLogById('event-logs', $this->ataque_id);
             $this->data = $info;
@@ -120,11 +120,12 @@ class Home extends Component
         return view('livewire.home', ['info_ataque' => $info, 'operationData' => $oD]);
     }
 
-    public function checkForChanges(){
+    public function checkForChanges()
+    {
 
-        if($this->data !== $this->lastData){
+        if ($this->data !== $this->lastData) {
             $this->lastData = $this->data;
-            $this->lastChangeTime= Carbon::now();
+            $this->lastChangeTime = Carbon::now();
         }
 
         if (Carbon::now()->diffInMinutes($this->lastChangeTime) >= 2) {
@@ -138,7 +139,7 @@ class Home extends Component
     {
         $client = new Client();
         try {
-            $url = $this->url.$index;
+            $url = $this->url . $index;
 
             // If $parameter is provided, append it to the URL
             if ($parameter !== null) {
@@ -164,16 +165,18 @@ class Home extends Component
         }
     }
 
-    public function mostrarReporte(){
+    public function mostrarReporte()
+    {
         $this->operationData = $this->reporte();
         dd($this->operationData);
         $this->currentStep = 4;
     }
 
-    public function getReportById(string $index, string $parameter){
+    public function getReportById(string $index, string $parameter)
+    {
         $client = new Client();
         try {
-            $url = $this->url. 'operations/'.$parameter. '/'.$index;
+            $url = $this->url . 'operations/' . $parameter . '/' . $index;
 
             $response = $client->post($url, [
                 'headers' => [
@@ -203,19 +206,18 @@ class Home extends Component
     public function reporte()
     {
 
-        $dataOperation =$this->getReportById('report', $this->operation_uuid);
+        $dataOperation = $this->getReportById('report', $this->operation_uuid);
 
-        $hosts_details=[];
+        $hosts_details = [];
 
-        foreach ($dataOperation["host_group"] as $keyHost => $host)
-        {
+        foreach ($dataOperation["host_group"] as $keyHost => $host) {
             $hosts_details[$keyHost] = [
-                "user"=> $host["username"],
+                "user" => $host["username"],
                 "platform_so" => $host["platform"],
-                "hostname"=> $host["host"],
+                "hostname" => $host["host"],
             ];
 
-            foreach ($host["host_ip_addrs"] as $keyIPAd => $IPAD){
+            foreach ($host["host_ip_addrs"] as $keyIPAd => $IPAD) {
                 $hosts_details[$keyHost]["host_ip_addreses"][$keyIPAd] = $IPAD;
             }
         }
@@ -224,14 +226,14 @@ class Home extends Component
 
         $successful_commands = [];
 
-        foreach ($dataOperation["steps"] as $keySteps => $arrayCommand){
+        foreach ($dataOperation["steps"] as $keySteps => $arrayCommand) {
 
             foreach ($arrayCommand as $stepCommand) {
 
-                foreach($stepCommand as $command){
-                // dd($command, $command["status"]);
+                foreach ($stepCommand as $command) {
+                    // dd($command, $command["status"]);
 
-                    if ($command["status"] == 0){
+                    if ($command["status"] == 0) {
                         $successful_commands[] = [
                             "name" => $command["command"],
                             "technique_name" => $command["attack"]["technique_name"],
@@ -247,16 +249,16 @@ class Home extends Component
 
         $failed_commands = [];
 
-        foreach ($dataOperation["steps"] as $keySteps => $arrayCommand){
+        foreach ($dataOperation["steps"] as $keySteps => $arrayCommand) {
             // dump($keySteps, $arrayCommand, $arrayCommand["steps"]);
 
             foreach ($arrayCommand as $stepCommand) {
                 // dump($stepCommand);
 
-                foreach($stepCommand as $command){
-                // dd($command["link_id"], $command["status"]);
+                foreach ($stepCommand as $command) {
+                    // dd($command["link_id"], $command["status"]);
 
-                    if ($command["status"] == 1){
+                    if ($command["status"] == 1) {
                         // dd($command);
                         $failed_commands[] = [
                             "name" => $command["command"],
@@ -272,10 +274,9 @@ class Home extends Component
         // dd($failed_commands);
         $skipped_abilities = [];
 
-        foreach($dataOperation["skipped_abilities"] as $keySkipped => $skipped)
-        {
-            foreach ($skipped as $keySkip => $skipCommand){
-                foreach ($skipCommand as $keySCommand => $command){
+        foreach ($dataOperation["skipped_abilities"] as $keySkipped => $skipped) {
+            foreach ($skipped as $keySkip => $skipCommand) {
+                foreach ($skipCommand as $keySCommand => $command) {
                     $skipped_abilities[] = [
                         "namRESULTADOSe" => $command["ability_name"],
                         "skip_reason" => $command["reason"],
@@ -285,16 +286,16 @@ class Home extends Component
         }
 
         $operationData =
-        [
-            "name" => $dataOperation["name"],
-            "hosts_count" => count($dataOperation["host_group"]),
-            "execution_start" => \Carbon\Carbon::parse($dataOperation["start"])->format('d/m/Y H:i'),
-            "execution_finish" => \Carbon\Carbon::parse($dataOperation["finish"])->format('d/m/Y H:i'),
-            "host_details" => $hosts_details,
-            "successful_commands" =>$successful_commands,
-            "failed_commands" => $failed_commands,
-            "skipped_abilities" => $skipped_abilities,
-        ];
+            [
+                "name" => $dataOperation["name"],
+                "hosts_count" => count($dataOperation["host_group"]),
+                "execution_start" => \Carbon\Carbon::parse($dataOperation["start"])->format('d/m/Y H:i'),
+                "execution_finish" => \Carbon\Carbon::parse($dataOperation["finish"])->format('d/m/Y H:i'),
+                "host_details" => $hosts_details,
+                "successful_commands" => $successful_commands,
+                "failed_commands" => $failed_commands,
+                "skipped_abilities" => $skipped_abilities,
+            ];
 
         return $operationData;
     }
@@ -419,7 +420,7 @@ class Home extends Component
 
         $client = new Client();
         try {
-            $url = $this->url.'operations';
+            $url = $this->url . 'operations';
 
             $response = $client->post($url, [
                 'headers' => [
@@ -442,20 +443,22 @@ class Home extends Component
         }
     }
 
-    public function procesarRecursivamente($datos){
-        return array_map(function ($dato){
+    public function procesarRecursivamente($datos)
+    {
+        return array_map(function ($dato) {
 
-            if(is_array($dato)){
-            return $this->procesarRecursivamente($dato);
+            if (is_array($dato)) {
+                return $this->procesarRecursivamente($dato);
             }
-            if(is_string($dato)){
+            if (is_string($dato)) {
                 return preg_replace('/^\w+\(\d+\)\s/', '', $dato);
             }
             return $dato;
         }, $datos);
     }
 
-    public function ejecutarAtaque(){
+    public function ejecutarAtaque()
+    {
         $valido = true;
 
         if (is_null($this->nombre)) {
@@ -478,10 +481,11 @@ class Home extends Component
         }
     }
 
-    public function getEventLogById(string $index, string $parameter){
+    public function getEventLogById(string $index, string $parameter)
+    {
         $client = new Client();
         try {
-            $url = $this->url. 'operations/'.$parameter. '/'.$index;
+            $url = $this->url . 'operations/' . $parameter . '/' . $index;
 
             $response = $client->post($url, [
                 'headers' => [
@@ -504,29 +508,30 @@ class Home extends Component
         }
     }
 
-    public function updatedAtaqueOperations($property){
+    public function updatedAtaqueOperations($property)
+    {
         $client = new Client();
-            try {
-                $response = $client->get($this->url.'operations/'.$property, [
-                    'headers' => [
-                        'KEY' => $this->apiKey,
-                        'Content-Type' => 'application/json',
-                    ],
-                ]);
+        try {
+            $response = $client->get($this->url . 'operations/' . $property, [
+                'headers' => [
+                    'KEY' => $this->apiKey,
+                    'Content-Type' => 'application/json',
+                ],
+            ]);
 
-                // You can now handle the API response as needed
-                $statusCode = $response->getStatusCode();
-                $data = json_decode($response->getBody(), true);
-                $this->optionSelected = true;
-                $this->dataGetOperation = $data;
-                $this->operationID = $property;
-                $this->orderingAttack = count($this->dataGetOperation['atomic_ordering']);
-                dd($this->dataGetOperation, $this->orderingAttack);
-                // Do something with $statusCode and $data
-            } catch (\Exception $e) {
-                // Handle exceptions (e.g., connection error, server error)
-                dd($e->getMessage());
-            }
+            // You can now handle the API response as needed
+            $statusCode = $response->getStatusCode();
+            $data = json_decode($response->getBody(), true);
+            $this->optionSelected = true;
+            $this->dataGetOperation = $data;
+            $this->operationID = $property;
+            $this->orderingAttack = count($this->dataGetOperation['atomic_ordering']);
+            dd($this->dataGetOperation, $this->orderingAttack);
+            // Do something with $statusCode and $data
+        } catch (\Exception $e) {
+            // Handle exceptions (e.g., connection error, server error)
+            dd($e->getMessage());
+        }
     }
 
     public function makeApiRequestToAllOperations()
@@ -550,7 +555,8 @@ class Home extends Component
         return $this->consumoApiv2($index);
     }
 
-    public function callAlerta($mensaje){
+    public function callAlerta($mensaje)
+    {
         $this->alert('warning', $mensaje, [
             'position' => 'center',
             'timer' => 3000,
@@ -558,6 +564,6 @@ class Home extends Component
             'timerProgressBar' => true,
             'showConfirmButton' => true,
             'onConfirmed' => '',
-            ]);
+        ]);
     }
 }
