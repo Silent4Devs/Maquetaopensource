@@ -117,7 +117,7 @@
             </div>
             @endif
             <div class="position-relative d-flex justify-content-end">
-                <button class="btn btn-primary btn-sm" wire:click="reporte">Continuar</button>
+                <button class="btn btn-primary btn-sm" wire:click="mostrarReporte">Continuar</button>
             </div>
         </div>
     </div>
